@@ -2,6 +2,7 @@ import java.math.BigInteger
 import java.security.MessageDigest
 import kotlin.io.path.Path
 import kotlin.io.path.readLines
+import kotlin.math.max
 
 /**
  * Reads lines from the given input txt file.
@@ -41,4 +42,27 @@ fun getWholeNumberAtIndexOfString(text: String, index: Int): Int? {
     // No need to rewind stopIndex because it is exclusive in the range
 
     return text.substring(startIndex, stopIndex).toInt()
+}
+
+fun lcm(a: Long, b: Long): Long {
+    val larger = max(a, b)
+    val maxLcm = a * b
+    var lcm = larger
+
+    while (lcm <= maxLcm) {
+        if ((lcm % a == 0L) && (lcm % b == 0L)) {
+            return lcm
+        }
+        lcm += larger
+    }
+
+    return maxLcm
+}
+
+fun lcm(numbers: List<Long>): Long {
+    var lcm = numbers.first()
+    numbers.drop(1).forEach {
+        lcm = lcm(lcm, it)
+    }
+    return lcm
 }

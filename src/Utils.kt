@@ -66,3 +66,29 @@ fun lcm(numbers: List<Long>): Long {
     }
     return lcm
 }
+
+fun List<String>.asGrid(): List<CharArray> {
+    return this.map { it.toCharArray() }
+}
+
+fun List<CharArray>.row(index: Int): CharArray {
+    assert(index < this.size)
+    return this[index]
+}
+
+fun List<CharArray>.col(index: Int): CharArray {
+    assert(index < this.first().size)
+    return this.map { it[index] }.toCharArray()
+}
+
+fun List<CharArray>.at(x: Int, y: Int): Char {
+    assert(y < this.size)
+    assert(x < this.first().size)
+    return this[y][x]
+}
+
+fun List<CharArray>.set(x: Int, y: Int, value: Char) {
+    assert(y < this.size)
+    assert(x < this.first().size)
+    this[y][x] = value
+}
